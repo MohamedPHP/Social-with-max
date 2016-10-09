@@ -1,0 +1,26 @@
+*{
+    font-family: cursive;
+}
+h1,h2,h3,h4,h5,h6{
+    color: #777;
+}
+hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.new-post{
+    padding: 16px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.posts .post{
+    padding-left: 10px;
+    border-left: 3px solid #e21b24;
+    margin-bottom: 30px;
+}
+
+.posts .post .info{
+    color: #aaa;
+    font-style: italic;
+    margin: 5px 0;
+}
