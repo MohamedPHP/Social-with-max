@@ -25,9 +25,17 @@ Route::post('/signin', [
     'as'    =>  'signin'
 ]);
 
+Route::post('/account', [
+    'uses'  =>  'UserController@postAccount',
+    'as'    =>  'account.save'
+]);
 Route::get('/account', [
     'uses'  =>  'UserController@getAccount',
     'as'    =>  'account'
+]);
+Route::get('/accountimage/{filename}', [
+    'uses'  =>  'UserController@getImage',
+    'as'    =>  'account.image'
 ]);
 
 Route::get('/logout', [

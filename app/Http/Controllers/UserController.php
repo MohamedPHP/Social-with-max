@@ -6,6 +6,9 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Storage;
+use File;
+
 class UserController extends Controller
 {
 
@@ -56,6 +59,30 @@ class UserController extends Controller
     public function getAccount()
     {
         return view('account', ['user' => Auth::user()]);
+    }
+
+    public function postAccount(Request $request)
+    {
+        $this->validate($request, [
+            'frist_name'   => 'required',
+        ]);
+
+        $user = User::findOrFail(Auth::user()->id);
+        $user->frist_name = $request['frist_name'];
+        $user->save();
+        $file = $request->file('image');
+        $file_name = $user->frist_name . '-' . $user->id . '.jpg';
+        if ($file) {
+            Storage::disk('local')->put($file_name, File::get($file));
+        }
+        return redirect()->back()->with(['message' => 'data updated']);
+
+    }
+
+    public function getImage($filename)
+    {
+        $file = Storage::disk('local')->get($filename);
+        return $file;
     }
 
 }
